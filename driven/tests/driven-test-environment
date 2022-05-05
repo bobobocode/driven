@@ -1,0 +1,1 @@
+export PYTHONPATH=/usr/local/driven:/usr/local/driven/driven/tests:${PYTHONPATH}

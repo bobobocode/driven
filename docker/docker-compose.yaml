@@ -1,0 +1,50 @@
+version: "3"
+services:
+  tests:
+    container_name: tests.driven
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - PATH=/usr/local/driven/tools:${PATH}
+    volumes:
+      - ..:/usr/local/driven
+    ports:
+      - "8080:8080"
+    command: [tail, '-f', '/dev/null']
+
+  example:
+    container_name: tests.driven.example
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - PYTHONPATH=/usr/local/driven:${PYTHONPATH}
+      - PATH=/usr/local/driven/tools:${PATH}
+    volumes:
+      - ..:/usr/local/driven
+    ports:
+      - "8000:8000"
+    command:
+        - sh
+        - -c 
+        - |
+          pip3 install -r /usr/local/driven/requirements.txt
+          cd /usr/local/driven/driven/tests && ./start_app_example.py -m app
+
+  comp-tornado:
+    container_name: tests.driven.example
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ..:/usr/local/driven
+    ports:
+      - "8000:8000"
+    command:
+        - sh
+        - -c 
+        - |
+          pip3 install tornado
+          cd /usr/local/driven/driven/tests/performance && ./comp_tornado.py
+

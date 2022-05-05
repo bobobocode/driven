@@ -1,0 +1,15 @@
+topy:
+  config:
+    name: conf
+    state:
+      topy.once_pull_photo_max_amount: 32 
+  db:
+    name: db
+    type: sqlite3
+    locate: ./unit-test.db
+    script: ./create_test_db.sh
+  logger:
+      name: logger
+      etc:
+        log_path: /Users/bobobo/code/.run/suser/log
+        level: DEBUG

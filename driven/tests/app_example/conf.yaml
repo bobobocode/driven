@@ -1,0 +1,5 @@
+app_example:
+  log:
+    name: app-example-log
+    path: ./app-example-log.txt
+    level: DEBUG

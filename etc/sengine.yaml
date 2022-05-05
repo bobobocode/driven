@@ -1,0 +1,29 @@
+python:
+  requirements:
+    - /usr/local/driven/test-requirements.txt
+    - /usr/local/driven/driven/tests/test_simulate_engine/app1/requirements.txt
+
+engine:
+  port: 8080
+  driven:
+    - topy-process-1: ./driven.yaml
+
+  log:
+    level: DEBUG
+    path: ./log.txt
+
+  filters:
+    client_filter: 
+      filter: driven.filter.client_filter
+      order: 1
+      url_pattern: /.*
+      algorithm: app1.client_filter_algorithm
+    auth_filter:
+      filter: driven.filter.auth_filter
+      order: 2
+    parameter_parse_filter:
+      filter: driven.filter.parameter_parse_filter
+      order: 3
+
+  schedulers:
+    - "* * 1 * * *:app1.task.task1"

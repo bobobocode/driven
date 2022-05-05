@@ -1,0 +1,12 @@
+driven:
+  mode: process_new
+  log:
+    name: driven-process
+    level: DEBUG
+    path: ./driven-process-test-log.txt
+
+  apps:
+    app_example:
+      deploy: /usr/local/driven/driven/tests
+      conf_file: /usr/local/driven/driven/tests/app_example/conf.yaml
+      context_builder: app_example.context

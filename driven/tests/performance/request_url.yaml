@@ -1,0 +1,13 @@
+#!http://localhost:8000 
+# First line format started with #!
+
+wait_time:
+  min: 1
+  max: 3
+
+requests:
+  hello:
+    method: post-json
+    path: /app_example/hello
+    data: 
+      name: 'locust-test'

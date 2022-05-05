@@ -1,0 +1,23 @@
+driven:
+  mode: async
+
+  log:
+    level: DEBUG
+    path: ./log.txt
+
+  python_env:
+    requirements:
+      - /usr/local/driven/test-requirements.txt
+      - /usr/local/driven/driven/tests/test_simulate_engine/app1/requirements.txt
+    python_pathes:
+      - /usr/local/driven
+
+  applications:
+    app1:
+      deploy: /usr/local/driven/driven/tests/test_simulate_engine
+      conf_path: /usr/local/driven/driven/tests/test_simulate_engine/app1.conf
+      context_builder: app1.context.init_context
+    app2:
+      deploy: /usr/local/driven/driven/tests/test_simulate_engine
+      conf_path: /usr/local/driven/driven/tests/test_simulate_engine/app2.conf
+      context_builder: app2.context.init_context
